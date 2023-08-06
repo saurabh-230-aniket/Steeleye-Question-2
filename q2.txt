@@ -1,0 +1,26 @@
+function highlightHTMLContent(htmlContent, plainTextPositions) {
+  let highlightedContent = htmlContent;
+
+  // Iterate through each position object in plainTextPositions
+  plainTextPositions.forEach(position => {
+    const { start, end } = position;
+
+    // Find the corresponding position in htmlContent
+    const wordToHighlight = plainText.slice(start, end);
+    const htmlStart = highlightedContent.indexOf(wordToHighlight);
+
+    if (htmlStart !== -1) {
+      // Highlight the word in the HTML content
+      const highlightedWord = `<mark>${wordToHighlight}</mark>`;
+      const htmlEnd = htmlStart + wordToHighlight.length;
+
+      // Replace the original content with the highlighted word
+      highlightedContent =
+        highlightedContent.slice(0, htmlStart) +
+        highlightedWord +
+        highlightedContent.slice(htmlEnd);
+    }
+  });
+
+  return highlightedContent;
+}
